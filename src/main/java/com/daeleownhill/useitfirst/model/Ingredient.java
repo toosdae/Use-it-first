@@ -32,6 +32,6 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return name + " (" + quantity + "" + unit + ") expires in" + daysUntilExpiry() + "days";
+        return name + " (" + quantity + " " + unit + ") expires in " + daysUntilExpiry() + " days";
     }
 }
