@@ -1,5 +1,6 @@
 package com.daeleownhill.useitfirst;
 
+import com.daeleownhill.useitfirst.service.ExpirationPriorityService;
 import com.daeleownhill.useitfirst.model.Ingredient;
 import com.daeleownhill.useitfirst.service.InventoryService;
 
@@ -21,5 +22,14 @@ public class Main {
         System.out.println(inventory.getIngredient("eggs"));
 
         System.out.println("Used 500g Lettuce? " + inventory.useQuantity("lettuce", 500));
+
+        ExpirationPriorityService priority = new ExpirationPriorityService();
+        priority.loadFrom(inventory.getAll());
+
+        System.out.println("Use first: " + priority.peekMostUrgent());
+        System.out.println("Expiring within 3 days:");
+        for (Ingredient i : priority.getExpiringWithin(3)) {
+            System.out.println("  " + i);
+        }
     }
 }
